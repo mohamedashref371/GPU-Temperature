@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GPU Temperature", "GPU Temperature\GPU Temperature.csproj", "{F910F6DC-CC66-4718-9DE3-49E55D34A184}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F910F6DC-CC66-4718-9DE3-49E55D34A184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F910F6DC-CC66-4718-9DE3-49E55D34A184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F910F6DC-CC66-4718-9DE3-49E55D34A184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F910F6DC-CC66-4718-9DE3-49E55D34A184}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C5F1E5D9-37A9-4564-B3E3-36FA0F55A378}
+	EndGlobalSection
+EndGlobal
