@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -114,6 +115,7 @@
             // thermometer
             // 
             this.thermometer.BalloonTipText = "show";
+            this.thermometer.Icon = ((System.Drawing.Icon)(resources.GetObject("thermometer.Icon")));
             this.thermometer.Text = "thermometer";
             this.thermometer.Visible = true;
             this.thermometer.Click += new System.EventHandler(this.Thermometer_Click);
@@ -122,6 +124,16 @@
             // 
             this.temperatureWarning.DecimalPlaces = 2;
             this.temperatureWarning.Location = new System.Drawing.Point(132, 188);
+            this.temperatureWarning.Maximum = new decimal(new int[] {
+            99,
+            0,
+            0,
+            0});
+            this.temperatureWarning.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             this.temperatureWarning.Name = "temperatureWarning";
             this.temperatureWarning.Size = new System.Drawing.Size(72, 20);
             this.temperatureWarning.TabIndex = 5;
@@ -134,6 +146,16 @@
             // timeWithSecond
             // 
             this.timeWithSecond.Location = new System.Drawing.Point(132, 159);
+            this.timeWithSecond.Maximum = new decimal(new int[] {
+            999,
+            0,
+            0,
+            0});
+            this.timeWithSecond.Minimum = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
             this.timeWithSecond.Name = "timeWithSecond";
             this.timeWithSecond.Size = new System.Drawing.Size(72, 20);
             this.timeWithSecond.TabIndex = 6;
@@ -217,6 +239,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Opacity = 0.9D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

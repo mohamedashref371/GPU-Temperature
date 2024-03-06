@@ -62,7 +62,7 @@ namespace GPU_Temperature
 
         private void Thermometer_Click(object sender, EventArgs e)
         {
-            Timer1_Tick(null, null);
+            //Timer1_Tick(null, null);
             Show();
         }
 
@@ -73,7 +73,9 @@ namespace GPU_Temperature
 
         private void Read_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
             Timer1_Tick(null, null);
+            timer1.Start();
         }
     }
 }
