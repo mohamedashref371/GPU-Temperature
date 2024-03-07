@@ -129,6 +129,8 @@ namespace GPU_Temperature
         private void Thermometer_Click(object sender, EventArgs e)
         {
             Read_Click(null, null);
+
+            // https://stackoverflow.com/questions/5282588/how-can-i-bring-my-application-window-to-the-front
             WindowState = FormWindowState.Minimized;
             Show();
             WindowState = FormWindowState.Normal;
