@@ -84,6 +84,7 @@
             this.degree.Size = new System.Drawing.Size(120, 48);
             this.degree.TabIndex = 2;
             this.degree.Text = "50.00";
+            this.degree.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // understood
             // 
@@ -138,7 +139,7 @@
             this.temperatureWarning.Size = new System.Drawing.Size(72, 20);
             this.temperatureWarning.TabIndex = 5;
             this.temperatureWarning.Value = new decimal(new int[] {
-            80,
+            75,
             0,
             0,
             0});

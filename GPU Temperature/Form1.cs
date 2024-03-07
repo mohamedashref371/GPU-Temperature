@@ -1,4 +1,5 @@
 ﻿using LibreHardwareMonitor.Hardware;
+using LibreHardwareMonitor.Hardware.Cpu;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,43 +27,97 @@ namespace GPU_Temperature
             Hide();
         }
 
+        static Computer computer = null;
+        static ISensor Sensor = null;
+        static IHardware Hardware = null;
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            Computer computer = new Computer
+            if (Sensor == null)
             {
-                IsGpuEnabled = true // تفعيل مراقبة وحدة المعالجة الرسومية
-            };
-
-            computer.Open();
-
-            foreach (var hardware in computer.Hardware)
-            {
-                if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd)
+                try
                 {
-                    hardware.Update();
-                    foreach (var sensor in hardware.Sensors)
+                    computer = new Computer
                     {
-                        if (sensor.SensorType == SensorType.Temperature)
+                        IsGpuEnabled = true // تفعيل مراقبة وحدة المعالجة الرسومية
+                    };
+
+                    computer.Open();
+
+                    foreach (var hardware in computer.Hardware)
+                    {
+                        if (hardware.HardwareType == HardwareType.GpuNvidia || hardware.HardwareType == HardwareType.GpuAmd)
                         {
-                            degree.Text = sensor.Value.ToString();
-                            if (sensor.Value >= (float)temperatureWarning.Value)
-                                Show();
+                            hardware.Update();
+                            foreach (var sensor in hardware.Sensors)
+                            {
+                                if (sensor.SensorType == SensorType.Temperature)
+                                {
+                                    degree.Text = sensor.Value.ToString();
+                                    Hardware = hardware;
+                                    Sensor = sensor;
+
+                                    if (Sensor.Value < 48)
+                                        degree.ForeColor = Color.Blue;
+                                    else if (Sensor.Value >= 85)
+                                        degree.ForeColor = Color.Red;
+                                    else if (Sensor.Value > 75)
+                                        degree.ForeColor = Color.OrangeRed;
+                                    else
+                                        degree.ForeColor = Color.Green;
+
+                                    if (sensor.Value >= (float)temperatureWarning.Value)
+                                        Show();
+                                }
+                            }
                         }
                     }
                 }
+                catch
+                {
+                    degree.Text = "Err";
+                    degree.ForeColor = Color.Red;
+                }
+                finally
+                {
+                    //computer?.Close();
+                    //computer = null;
+                }
             }
+            else
+            {
+                try
+                {
+                    Hardware.Update();
+                    degree.Text = Sensor.Value.ToString();
+                    if (Sensor.Value < 48)
+                        degree.ForeColor = Color.Blue;
+                    else if (Sensor.Value >= 85)
+                        degree.ForeColor = Color.Red;
+                    else if (Sensor.Value > 75)
+                        degree.ForeColor = Color.OrangeRed;
+                    else
+                        degree.ForeColor = Color.Green;
 
-            computer.Close();
+                    if (Sensor.Value >= (float)temperatureWarning.Value)
+                        Show();
+                }
+                catch
+                {
+
+                }
+            }
         }
 
         private void Close_Click(object sender, EventArgs e)
         {
+            computer?.Close();
+            computer = null;
             Close();
         }
 
         private void Thermometer_Click(object sender, EventArgs e)
         {
-            //Timer1_Tick(null, null);
+            Read_Click(null, null);
             Show();
         }
 
