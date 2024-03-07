@@ -44,13 +44,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.read = new System.Windows.Forms.Button();
+            this.reset = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.temperatureWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.timeWithSecond)).BeginInit();
             this.SuspendLayout();
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Interval = 15000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
@@ -124,7 +124,7 @@
             // temperatureWarning
             // 
             this.temperatureWarning.DecimalPlaces = 2;
-            this.temperatureWarning.Location = new System.Drawing.Point(132, 188);
+            this.temperatureWarning.Location = new System.Drawing.Point(132, 186);
             this.temperatureWarning.Maximum = new decimal(new int[] {
             99,
             0,
@@ -139,14 +139,15 @@
             this.temperatureWarning.Size = new System.Drawing.Size(72, 20);
             this.temperatureWarning.TabIndex = 5;
             this.temperatureWarning.Value = new decimal(new int[] {
-            75,
+            80,
             0,
             0,
             0});
+            this.temperatureWarning.ValueChanged += new System.EventHandler(this.TemperatureWarning_ValueChanged);
             // 
             // timeWithSecond
             // 
-            this.timeWithSecond.Location = new System.Drawing.Point(132, 159);
+            this.timeWithSecond.Location = new System.Drawing.Point(132, 161);
             this.timeWithSecond.Maximum = new decimal(new int[] {
             999,
             0,
@@ -161,7 +162,7 @@
             this.timeWithSecond.Size = new System.Drawing.Size(72, 20);
             this.timeWithSecond.TabIndex = 6;
             this.timeWithSecond.Value = new decimal(new int[] {
-            15,
+            25,
             0,
             0,
             0});
@@ -171,7 +172,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label3.Location = new System.Drawing.Point(210, 160);
+            this.label3.Location = new System.Drawing.Point(210, 162);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 19);
             this.label3.TabIndex = 7;
@@ -181,7 +182,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label4.Location = new System.Drawing.Point(210, 186);
+            this.label4.Location = new System.Drawing.Point(210, 184);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(32, 19);
             this.label4.TabIndex = 8;
@@ -191,7 +192,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label5.Location = new System.Drawing.Point(12, 160);
+            this.label5.Location = new System.Drawing.Point(12, 162);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(107, 19);
             this.label5.TabIndex = 9;
@@ -201,7 +202,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F);
-            this.label6.Location = new System.Drawing.Point(12, 186);
+            this.label6.Location = new System.Drawing.Point(12, 184);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(114, 19);
             this.label6.TabIndex = 10;
@@ -222,11 +223,27 @@
             this.read.UseVisualStyleBackColor = true;
             this.read.Click += new System.EventHandler(this.Read_Click);
             // 
+            // reset
+            // 
+            this.reset.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.reset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reset.Font = new System.Drawing.Font("Tahoma", 10F);
+            this.reset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.reset.Location = new System.Drawing.Point(132, 132);
+            this.reset.Name = "reset";
+            this.reset.Size = new System.Drawing.Size(71, 25);
+            this.reset.TabIndex = 12;
+            this.reset.TabStop = false;
+            this.reset.Text = "Reset";
+            this.reset.UseVisualStyleBackColor = true;
+            this.reset.Click += new System.EventHandler(this.Reset_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(364, 217);
+            this.ClientSize = new System.Drawing.Size(364, 215);
+            this.Controls.Add(this.reset);
             this.Controls.Add(this.read);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -268,6 +285,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button read;
+        private System.Windows.Forms.Button reset;
     }
 }
 

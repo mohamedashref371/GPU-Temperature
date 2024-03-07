@@ -16,7 +16,17 @@ namespace GPU_Temperature
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            try
+            {
+                System.Threading.Mutex mutex = new System.Threading.Mutex(true, Application.ProductName + Application.CompanyName, out bool createdNew);
+                if (createdNew /* لمنع فتح نسختين من البرنامج */)
+                {
+                    Application.Run(new Form1());
+                    mutex.ReleaseMutex();
+                }
+                else MessageBox.Show("هناك نسخة من البرنامج مفتوحة");
+            }
+            catch { MessageBox.Show("حدث خطأ غير متوقع، سيتم إغلاق البرنامج"); }
         }
     }
 }

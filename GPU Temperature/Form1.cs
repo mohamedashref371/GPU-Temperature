@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,17 @@ namespace GPU_Temperature
         {
             InitializeComponent();
             thermometer.Visible = true;
-            Timer1_Tick(null, null);
+
+            if (File.Exists(save + timeWithSecond.Name) && decimal.TryParse(File.ReadAllText(save + timeWithSecond.Name), out decimal result1))
+                timeWithSecond.Value = result1;
+
+            if (File.Exists(save + temperatureWarning.Name) && decimal.TryParse(File.ReadAllText(save + temperatureWarning.Name), out decimal result2))
+                temperatureWarning.Value = result2;
+
+            Read_Click(null, null);
         }
-        
+
+        readonly string save = Microsoft.VisualBasic.FileIO.SpecialDirectories.AllUsersApplicationData.Replace(Application.ProductVersion, "");
 
         private void Understood_Click(object sender, EventArgs e)
         {
@@ -123,6 +132,7 @@ namespace GPU_Temperature
 
         private void TimeWithSecond_ValueChanged(object sender, EventArgs e)
         {
+            File.WriteAllText(save + timeWithSecond.Name, timeWithSecond.Value.ToString());
             timer1.Interval = (int)(timeWithSecond.Value * 1000);
         }
 
@@ -131,6 +141,17 @@ namespace GPU_Temperature
             timer1.Stop();
             Timer1_Tick(null, null);
             timer1.Start();
+        }
+
+        private void TemperatureWarning_ValueChanged(object sender, EventArgs e)
+        {
+            File.WriteAllText(save + temperatureWarning.Name, temperatureWarning.Value.ToString());
+        }
+
+        private void Reset_Click(object sender, EventArgs e)
+        {
+            timeWithSecond.Value = 25;
+            temperatureWarning.Value = 80;
         }
     }
 }
