@@ -146,7 +146,9 @@ namespace GPU_Temperature
         private void TimeWithSecond_ValueChanged(object sender, EventArgs e)
         {
             File.WriteAllText(save + timeWithSecond.Name, timeWithSecond.Value.ToString());
+            timer1.Stop();
             timer1.Interval = (int)(timeWithSecond.Value * 1000);
+            timer1.Start();
         }
 
         private void Read_Click(object sender, EventArgs e)

@@ -51,7 +51,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 15000;
+            this.timer1.Interval = 25000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // label1
