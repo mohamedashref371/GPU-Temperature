@@ -106,10 +106,15 @@ namespace GPU_Temperature
 
                     if (Sensor.Value >= (float)temperatureWarning.Value)
                     {
-                        WindowState = FormWindowState.Minimized;
-                        Show();
-                        WindowState = FormWindowState.Normal;
-                        BringToFront();
+                        if (!Visible)
+                        {
+                            // https://stackoverflow.com/questions/5282588/how-can-i-bring-my-application-window-to-the-front
+                            Show();
+                            TopMost = true;
+                            Focus();
+                            BringToFront();
+                            TopMost = false;
+                        }
                     }
                 }
                 catch
@@ -131,10 +136,11 @@ namespace GPU_Temperature
             Read_Click(null, null);
 
             // https://stackoverflow.com/questions/5282588/how-can-i-bring-my-application-window-to-the-front
-            WindowState = FormWindowState.Minimized;
             Show();
-            WindowState = FormWindowState.Normal;
+            TopMost = true;
+            Focus();
             BringToFront();
+            TopMost = false;
         }
 
         private void TimeWithSecond_ValueChanged(object sender, EventArgs e)
