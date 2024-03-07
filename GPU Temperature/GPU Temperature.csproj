@@ -35,6 +35,9 @@
   <PropertyGroup>
     <ApplicationIcon>Temp.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>GPU_Temperature.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="HidSharp, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\HidSharp.2.1.0\lib\net35\HidSharp.dll</HintPath>

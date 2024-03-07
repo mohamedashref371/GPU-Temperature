@@ -64,9 +64,6 @@ namespace GPU_Temperature
                                         degree.ForeColor = Color.OrangeRed;
                                     else
                                         degree.ForeColor = Color.Green;
-
-                                    if (sensor.Value >= (float)temperatureWarning.Value)
-                                        Show();
                                 }
                             }
                         }
@@ -99,7 +96,10 @@ namespace GPU_Temperature
                         degree.ForeColor = Color.Green;
 
                     if (Sensor.Value >= (float)temperatureWarning.Value)
+                    {
                         Show();
+                        BringToFront();
+                    }
                 }
                 catch
                 {
