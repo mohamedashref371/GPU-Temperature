@@ -115,9 +115,9 @@
             // 
             // thermometer
             // 
-            this.thermometer.BalloonTipText = "show";
+            this.thermometer.BalloonTipText = "Show";
             this.thermometer.Icon = ((System.Drawing.Icon)(resources.GetObject("thermometer.Icon")));
-            this.thermometer.Text = "thermometer";
+            this.thermometer.Text = "Thermometer";
             this.thermometer.Visible = true;
             this.thermometer.Click += new System.EventHandler(this.Thermometer_Click);
             // 
