@@ -106,7 +106,9 @@ namespace GPU_Temperature
 
                     if (Sensor.Value >= (float)temperatureWarning.Value)
                     {
+                        WindowState = FormWindowState.Minimized;
                         Show();
+                        WindowState = FormWindowState.Normal;
                         BringToFront();
                     }
                 }
@@ -127,7 +129,10 @@ namespace GPU_Temperature
         private void Thermometer_Click(object sender, EventArgs e)
         {
             Read_Click(null, null);
+            WindowState = FormWindowState.Minimized;
             Show();
+            WindowState = FormWindowState.Normal;
+            BringToFront();
         }
 
         private void TimeWithSecond_ValueChanged(object sender, EventArgs e)
