@@ -1,5 +1,4 @@
 ﻿using LibreHardwareMonitor.Hardware;
-using LibreHardwareMonitor.Hardware.Cpu;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,13 +7,13 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GPU_Temperature
 {
     public partial class Form1 : Form
     {
+        bool isShortcutExist = false;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +32,12 @@ namespace GPU_Temperature
 
         private void Understood_Click(object sender, EventArgs e)
         {
+            if (!isShortcutExist)
+            {
+                try { CreateStartupShortcut(); }
+                catch { }
+                isShortcutExist = true;
+            }
             Hide();
         }
 
@@ -128,6 +133,7 @@ namespace GPU_Temperature
         {
             computer?.Close();
             computer = null;
+            DeleteStartupShortcut();
             Close();
         }
 
@@ -167,6 +173,34 @@ namespace GPU_Temperature
         {
             timeWithSecond.Value = 25;
             temperatureWarning.Value = 80;
+        }
+
+        private void CreateStartupShortcut()
+        {
+            string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            string shortcutPath = Path.Combine(startupPath, $"{Application.ProductName} - Shortcut.lnk");
+
+            if (File.Exists(shortcutPath)) return;
+
+            IWshRuntimeLibrary.WshShell shell = new IWshRuntimeLibrary.WshShell();
+            IWshRuntimeLibrary.IWshShortcut shortcut = (IWshRuntimeLibrary.IWshShortcut)shell.CreateShortcut(shortcutPath);
+
+            shortcut.TargetPath = Application.ExecutablePath;
+            shortcut.WorkingDirectory = Application.StartupPath;
+            shortcut.WindowStyle = 1;
+            shortcut.Description = $"Shortcut to {Application.ProductName} Application";
+            shortcut.IconLocation = Application.ExecutablePath;
+
+            shortcut.Save();
+        }
+
+        public void DeleteStartupShortcut()
+        {
+            string startupPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            string shortcutPath = Path.Combine(startupPath, $"{Application.ProductName} - Shortcut.lnk");
+
+            if (File.Exists(shortcutPath))
+                File.Delete(shortcutPath);
         }
     }
 }
